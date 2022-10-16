@@ -1,22 +1,38 @@
-import styled from "styled-components"
-import { popularProducts } from "../data"
-import  Product  from "./Product"
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { publicRequest } from "../requestMethods";
+import Product from "./Product";
 
 const Container = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-`
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
 
-function Products() {
+function Products({ cat, sort }) {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProudcts = async () => {
+      try {
+        const res = await publicRequest.get(cat ? `/products?category=${cat}` : `/products`)
+        console.log(products);
+        setProducts(res.data)
+      } catch (err) {}
+    };
+    getProudcts();
+  }, [cat]);
+
+
+  
   return (
     <Container>
-        {popularProducts.map((item, index)=>(
-            <Product item={item} key={index}/>
-        ))}
+      {products.map((item, index) => (
+        <Product item={item} key={index} />
+      ))}
     </Container>
-  )
+  );
 }
 
-export default Products
+export default Products;

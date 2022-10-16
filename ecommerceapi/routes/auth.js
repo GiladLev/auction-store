@@ -2,9 +2,10 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
+const UsersPostValidation = require('./validation/validation');
 
 //REGISTER
-router.post("/register", async (req, res) => {
+router.post("/register", UsersPostValidation,  async (req, res) => {
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,

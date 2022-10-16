@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link,  useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 
@@ -43,11 +44,11 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
-  &:disabled{
+  &:disabled {
     /* cursor: not-allowed; */
   }
 `;
-const Link = styled.a`
+const LinkTXT = styled.a`
   margin: 5px 0;
   font-size: 12px;
   text-decoration: underline;
@@ -59,13 +60,14 @@ const Error = styled.span`
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch()
-  const {isFetching, error} = useSelector(state => state.user)
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
-  const handleClick = (e)=>{
-    e.preventDefault()
-    login(dispatch, {username, password})
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
   return (
     <Container>
       <Wrapper>
@@ -79,9 +81,11 @@ const Login = () => {
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick} >LOGIN</Button>
-         { error && <Error>Something went wrong</Error>}
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Button onClick={handleSubmit}>LOGIN</Button>
+          {error && <Error>Something went wrong</Error>}
+          <Link to="/register">
+            <LinkTXT>CREATE A NEW ACCOUNT</LinkTXT>
+          </Link>
         </Form>
       </Wrapper>
     </Container>

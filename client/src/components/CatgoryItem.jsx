@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -24,7 +25,7 @@ const Info = styled.div`
 `;
 const Title = styled.h1`
   color: white;
-  margin-bottom: 20px
+  margin-bottom: 20px;
 `;
 const Button = styled.button`
     border: none;
@@ -38,11 +39,13 @@ const Button = styled.button`
 const CatgoryItem = ({ item }) => {
   return (
     <Container>
+      <Link to={`/products/${item.categories}`}>
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>
         <Button>SHOP NOW</Button>
       </Info>
+      </Link>
     </Container>
   );
 };
