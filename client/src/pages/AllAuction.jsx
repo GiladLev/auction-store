@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import AddProduct from "../components/AddProduct";
 import Navbar from "../components/Navbar";
 import TableAllAuction from "../components/TableAllAuction";
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
   width: 100vw;
@@ -18,6 +20,7 @@ const WrapperTable = styled.div`
 `;
 
 const AllAuction = () => {
+
   return (
     <div>
       <Navbar />

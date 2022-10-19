@@ -1,6 +1,20 @@
+import { useEffect, useState } from 'react';
+import { publicRequest } from '../requestMethods';
+import RowTable from './RowTable';
 import './TableAllAuction.css'
 
 const TableAllAuction = () => {
+  const [products, setProducts]=useState('')
+  const user =JSON.parse(localStorage.getItem('user'))?.username
+  useEffect(() => {
+    const getProudcts = async () => {
+      try {
+        const res = await publicRequest.get(`products/myauction/${user}`)
+        setProducts(res.data)
+      } catch (err) {}
+    };
+    getProudcts();
+  });
   return (
       <div className="container">
   <h2>Responsive Tables Using LI </h2>
@@ -12,14 +26,9 @@ const TableAllAuction = () => {
       <div className="col col-4">buyer name</div>
       <div className="col col-4">Payment Status</div>
     </li>
-    <li className="table-row">
-      <div className="col col-1" data-label="Job Id">42235</div>
-      <div className="col col-2" data-label="Customer Name">John Doe</div>
-      <div className="col col-3" data-label="Amount">$350</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-      <div className="col col-4" data-label="Payment Status">Pending</div>
-    </li>
-    
+    {products && products.map((product, id)=> {
+     return <RowTable key={id} product={product}/>
+    })}
   </ul>
 </div>
   )

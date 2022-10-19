@@ -21,7 +21,7 @@ router.post("/", verifyToken, async (req, res) => {
 
 //UPDATE
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyToken, async (req, res) => {
   try {
     const updatedProuduct = await Product.findByIdAndUpdate(
       req.params.id,
@@ -37,13 +37,12 @@ router.put("/:id", async (req, res) => {
 });
 
 //update new auction
-router.put("/allauction/:id", async (req, res) => {
+router.put("/allauction/:id", verifyToken, async (req, res) => {
   try {
     const isBigger = false;
     const product = await Product.findById(req.params.id);
     const price = product.allAuction[product.allAuction.length - 1].price;
     const newPrice = req.body.price;
-    console.log(newPrice + "&&" + price);
     if (newPrice < price) {
       res.status(400).json("You must make an offer greater than the original offer");
     }
@@ -88,6 +87,7 @@ router.get("/find/:id", async (req, res) => {
   }
 });
 
+
 //GET ALL Products
 
 router.get("/", async (req, res) => {
@@ -107,6 +107,15 @@ router.get("/", async (req, res) => {
       products = await Product.find();
     }
 
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+router.get("/myauction/:user", async (req, res) => {
+
+  try {
+      const products = await Product.find({"createdBy": req.params.user});
     res.status(200).json(products);
   } catch (err) {
     res.status(500).json(err);

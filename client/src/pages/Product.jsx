@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
+import Clock from "../components/Clock";
 import Navbar from "../components/Navbar";
 import { publicRequest, userRequest } from "../requestMethods";
 
@@ -95,6 +96,8 @@ const Product = () => {
           <Desc>
             {proudct.desc}
           </Desc>
+          <Desc>A number of suggestions offered: {proudct.allAuction && proudct.allAuction.length}</Desc>
+          <Clock endAuction={proudct.endAuction && proudct.endAuction}/>
           <Price>{proudct.allAuction && proudct.allAuction[proudct.allAuction?.length-1].price}</Price>
           {user ? 
           <AddContainer>

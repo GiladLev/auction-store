@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -39,22 +39,32 @@ const Title = styled.h4`
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"))?.username;
+  const username = JSON.parse(localStorage.getItem("user"))?.username;
+
   return (
     <Container>
       <Wrapper>
         
-          {user ? <Left><Title>Hello {user}</Title> <Title onClick={() => navigate("/myauction")}>MY AUCTION</Title> </Left> : null}
+          {username ? <Left><Title>Hello {username}</Title> <Title onClick={() => navigate("/myauction")}>MY AUCTION</Title> </Left> : <Left></Left> }
        
         
         <Center>
           <Logo onClick={() => navigate("/")}>SHOP.</Logo>
         </Center>
 
-          {user ? <Right> <Title onClick={() => localStorage.removeItem("user")}>LOG OUT</Title> </Right> :
+          {username ? <Right> <Title onClick={() => {
+            localStorage.removeItem("persist:root")
+            localStorage.removeItem("user")
+            navigate("/")
+          }}>LOG OUT</Title> </Right> :
           <Right>
             <Title onClick={() => navigate("/register")}>REGISTER</Title>
-            <Title onClick={() => navigate("/login")}>SIGN IN</Title> 
+            <Title onClick={
+              () => {
+                navigate("/login")
+                window.location.reload(false)
+            }
+          }>SIGN IN</Title> 
           </Right>}
 
       </Wrapper>

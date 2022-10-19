@@ -9,10 +9,12 @@ const ProductSchema = new mongoose.Schema(
     img: { type: String, required: true },
     categories: { type: String, required: true },
     price: { type: Number, required: true },
+    endAuction: { type: String, required: true },
     allAuction: [{
       user: String,
       price: Number
     }],
+    createdBy:{ type: String, required: true }
   },
   { timestamps: true }
 );

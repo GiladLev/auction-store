@@ -36,12 +36,13 @@ const Button = styled.button`
 `;
 const AddProduct = () => {
   const [product, setProduct] = useState(null);
+  const user =JSON.parse(localStorage.getItem('user'))?.username
   const handleSubmit = (e) => {
     e.preventDefault();
     const postProduct = async (product) => {
       console.log(product);
       try {
-        const res = await userRequest.post("/products/", product);
+        const res = await userRequest.post("/products/",{...product, "createdBy": user });
         console.log(res);
       } catch (error) {
         console.log(error);
@@ -68,6 +69,7 @@ const AddProduct = () => {
         />
         <Input
           placeholder="first price"
+          type="number" min="0"
           onChange={(e) =>
             setProduct({
               ...product,
@@ -80,6 +82,13 @@ const AddProduct = () => {
           placeholder="categories"
           onChange={(e) =>
             setProduct({ ...product, categories: e.target.value })
+          }
+        />
+        <Input
+          placeholder="End auction"
+          type="datetime-local"
+          onChange={(e) =>
+            setProduct({ ...product, endAuction: e.target.value })
           }
         />
         <Button onClick={handleSubmit}>CREATE</Button>
