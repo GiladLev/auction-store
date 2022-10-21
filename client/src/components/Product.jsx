@@ -31,6 +31,7 @@ const Container = styled.div`
     &:hover ${Info}{
       opacity: 1;
     }
+
 `
 const Image = styled.img`
     height: 75%;
@@ -46,8 +47,9 @@ const  Auction= styled.div`
     align-items: center;
     justify-content: center;
     transition: all 0.5s ease;
+    color: black;
     
-    
+
     &:hover{
       background-color: #f5fbfd;
       transform: scale(1.1);
@@ -59,7 +61,7 @@ const Product = ({item}) => {
     <Container>
         <Image src={item.img}/>
         <Info>
-          <Link to={`/product/${item._id}`}>
+          <Link to={`/product/${item._id}`} style={{ textDecoration: 'none' }}>
           <Auction>
           Auction
           </Auction>

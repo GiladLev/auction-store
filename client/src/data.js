@@ -24,7 +24,7 @@ export const sliderItems = [
       catagories: "sport",
     },],
     [{
-      id: 1,
+      id: 4,
       img: "https://res.cloudinary.com/dxexnhjmi/image/upload/v1666270439/computer_b6wupw.png",
       title: "Computers and electronics",
       desc: "The place to offer and buy your old products Caution The products are bought quickly",
@@ -32,7 +32,7 @@ export const sliderItems = [
       catagories: "Computer",
     },
     {
-      id: 2,
+      id: 5,
       img: "https://res.cloudinary.com/dxexnhjmi/image/upload/v1666271523/8146106735_9_1_1-removebg-preview_she1pb.png",
       title: "Women's clothing",
       desc: "The place with the newest designer clothes at great prices",
@@ -40,7 +40,7 @@ export const sliderItems = [
       catagories: "Women",
     },
     {
-      id: 3,
+      id: 6,
       img: "https://res.cloudinary.com/dxexnhjmi/image/upload/v1666270440/pumatrainFIT-removebg-preview_2_g67wih.png",
       title: "Weights and gym",
       desc: "All the equipment required for maximum training in minimum time and maximum effect.",
@@ -48,7 +48,7 @@ export const sliderItems = [
       catagories: "gym",
     },],
     [{
-      id: 1,
+      id: 7,
       img: "https://res.cloudinary.com/dxexnhjmi/image/upload/v1666270440/phone_s7zwp8.png",
       title: "Cell phones",
       desc: "Is there a new iPhone? It's time to sell your old one.",
@@ -56,7 +56,7 @@ export const sliderItems = [
       catagories: "cellphones",
     },
     {
-      id: 2,
+      id: 8,
       img: "https://res.cloudinary.com/dxexnhjmi/image/upload/v1666270439/child_dn24e2.png",
       title: "Children's clothing",
       desc: "Did the child's shirt get dirty? It's time to buy a new shirt.",
@@ -64,7 +64,7 @@ export const sliderItems = [
       catagories: "children",
     },
     {
-      id: 3,
+      id: 9,
       img: "https://res.cloudinary.com/dxexnhjmi/image/upload/v1666270439/smu22-removebg-preview-removebg-preview_fw2r2p.png",
       title: "Extreme sports",
       desc: "Going on an extreme vacation, this is the place to find the necessary and new equipment for the vacation.",

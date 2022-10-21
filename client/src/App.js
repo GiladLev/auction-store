@@ -11,7 +11,6 @@ import AddAuction from "./pages/AddAuction";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
-  console.log(user);
   // const user =JSON.parse(localStorage.getItem('user'))?.username
 
   

@@ -5,9 +5,11 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import { mobile } from "../responsive";
 
-const Container = styled.div``;
 const Title = styled.h1`
-  margin: 20px;
+  
+`;
+const Container = styled.div`
+  padding-top:60px;
 `;
 const FilterContainer = styled.div`
   display: flex;
@@ -38,8 +40,9 @@ const ProductList = () => {
     const [sort, setSort] = useState("Newest")
 
   return (
-    <Container>
-       <Navbar/>
+    <div>
+      <Navbar/>
+      <Container>
       <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
@@ -52,7 +55,8 @@ const ProductList = () => {
         </Filter>
       </FilterContainer>
       <Products  cat={cat} sort={sort}/>
-    </Container>
+      </Container>
+   </div>
   );
 };
 

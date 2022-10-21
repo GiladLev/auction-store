@@ -190,9 +190,9 @@ const Slider = () => {
       </ArrowUpAndDown>
       <Wrapper slideIndex={slideIndex}>
         <WrapperUpandDown slideIndexUpandDown={slideIndexUpandDown}>
-          {sliderItems.map((row, index) => {
+          {sliderItems.map((row, indexRow) => {
             return (
-              <Row className="row" key={index}>
+              <Row className="row" key={indexRow}>
                 {row.map((item, index) => {
                   return (
                     <Slide bg={item.bg} key={index}>
@@ -202,9 +202,9 @@ const Slider = () => {
                       <InfoContainer>
                         <Title>{item.title}</Title>
                         <Desc>{item.desc}</Desc>
-                        <Link to={`/products/${item.categories}`}>
+                        {item.id!==1 && <Link to={`/products/${item.catagories}`}>
                           <Button>SHOW NOW</Button>
-                        </Link>
+                        </Link>}
                       </InfoContainer>
                     </Slide>
                   );

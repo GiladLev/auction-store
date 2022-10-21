@@ -23,7 +23,8 @@ const TableAllAuction = () => {
       <div className="col col-2">Title</div>
       <div className="col col-3">Price</div>
       <div className="col col-4">buyer name</div>
-      <div className="col col-4">Payment Status</div>
+      <div className="col col-4">suggestion</div>
+      <div className="col col-4">time left</div>
     </li>
     {products && products.map((product, id)=> {
      return <RowTable key={id} product={product}/>

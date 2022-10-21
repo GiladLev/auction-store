@@ -70,6 +70,7 @@ const Register = () => {
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus nesciunt fugiat pariatur? Hic, ab molestiae error magni aliquam delectus porro, dolorem obcaecati exercitationem libero quo at qui. Doloremque, perspiciatis unde.
           <Input placeholder="username" onChange={(e) => setUser({...user,username: e.target.value})}/>
           <Input placeholder="email" onChange={(e) => setUser({...user,email: e.target.value})}/>
           <Input placeholder="password" onChange={(e) => setUser({...user,password: e.target.value})}/>

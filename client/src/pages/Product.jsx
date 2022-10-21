@@ -4,27 +4,27 @@ import styled from "styled-components";
 import Clock from "../components/Clock";
 import Navbar from "../components/Navbar";
 import { publicRequest, userRequest } from "../requestMethods";
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
-  padding: 50px;
+  padding-top: 70px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection: "column" })}
+  ${tablet({ padding: "10px", flexDirection: "column" })}
 `;
 const ImageContainer = styled.div`
   flex: 1;
 `;
 const Image = styled.img`
-  width: 100%;
+  width: 60%;
   height: 90vh;
   object-fit: cover;
-  ${mobile({ height: "40vh" })}
+  ${tablet({ height: "40vh" })}
 `;
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
-  ${mobile({ padding: "10px" })}
+  ${tablet({ padding: "10px" })}
 `;
 const Title = styled.h1`
   font-weight: 200;
@@ -37,13 +37,13 @@ const Price = styled.span`
   font-size: 40px;
 `;
 const AddContainer = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between !important;
+
 `;
 const Bid = styled.input`
-  width: 100px;
+  width: 30%;
   height: 30px;
   border-radius: 10px;
   border: 1px solid teal;
@@ -111,8 +111,8 @@ const Product = () => {
           <Price>{proudct.allAuction && proudct.allAuction[proudct.allAuction?.length-1].price}$</Price>
           {user ? 
           <AddContainer>
-            {isAction && <div><Bid onChange={(e)=>{setInput(e.target.value)}} input type="number" name="test_name" min={input} />
-            <Button onClick={putPrice}>BID</Button></div>}
+            { <AddContainer><Bid onChange={(e)=>{setInput(e.target.value)}} input type="number" name="test_name" min={input} />
+            <Button onClick={putPrice}>BID</Button></AddContainer>}
           </AddContainer> : <Desc>You must register to bid</Desc>} 
         </InfoContainer>
       </Wrapper>

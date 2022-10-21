@@ -22,7 +22,7 @@ function Products({ cat, sort }) {
       } catch (err) {}
     };
     getProudcts();
-  }, [cat]);
+  }, []);
 
 
   
