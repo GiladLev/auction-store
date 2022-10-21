@@ -89,7 +89,7 @@ const AddProduct = () => {
     e.preventDefault()
     const formData = new FormData();
     formData.append("file", img);
-    formData.append("upload_preset", "ul9zvfet");
+    formData.append("upload_preset", process.env.CLOUDNERY_SEC );
     console.log(formData);
 
     axios.post(
