@@ -6,9 +6,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Routes, Route, BrowserRouter as Router, Navigate, useNavigate } from "react-router-dom";
 import AllAuction from "./pages/AllAuction";
-import Navbar from "./components/Navbar";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import AddAuction from "./pages/AddAuction";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
@@ -26,6 +25,7 @@ function App() {
         <Route path="/login" element={user ? <Home/> : <Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/myauction" element={<AllAuction />} />
+        <Route path="/addauction" element={<AddAuction />} />
       </Routes>
     </Router>
   );

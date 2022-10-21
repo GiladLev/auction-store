@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+
 import styled from "styled-components";
-import AddProduct from "../components/AddProduct";
 import Navbar from "../components/Navbar";
 import TableAllAuction from "../components/TableAllAuction";
-import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
   width: 100vw;
@@ -12,12 +10,11 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const WrapperAddProduct = styled.div`
-  flex: 1;
+const Wrapper = styled.div`
+width: 80%;
+  height: 80%;
 `;
-const WrapperTable = styled.div`
-  flex: 3;
-`;
+
 
 const AllAuction = () => {
 
@@ -25,12 +22,9 @@ const AllAuction = () => {
     <div>
       <Navbar />
       <Container>
-        <WrapperAddProduct>
-          <AddProduct />
-        </WrapperAddProduct>
-        <WrapperTable>
+        <Wrapper>
           <TableAllAuction />
-        </WrapperTable>
+        </Wrapper>
       </Container>
     </div>
   );

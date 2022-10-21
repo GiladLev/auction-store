@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 const Clock = ({ endAuction }) => {
   const [timeCounter, setTimeCounter] = useState("Loading...");
-  const [first, setFirst] = useState(true);
 
 
   useEffect(() => {
@@ -28,15 +27,15 @@ const Clock = ({ endAuction }) => {
       hours = hours < 10 ? "0" + hours : hours;
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
-        setTimeCounter(days + " days  " + hours + ":" + minutes + ":" + seconds + "  hours");
+      setTimeCounter(days + " days  " + hours + ":" + minutes + ":" + seconds + "  hours");
     } else {
-        first ? setTimeCounter("Loading..") : setTimeCounter("The auction ended");
+        setTimeCounter("The auction ended");
     }
   }
   return (
-    <div>
-      <h1>{timeCounter}</h1>
-    </div>
+    <>
+      <div>{timeCounter}</div>
+    </>
   );
 };
 

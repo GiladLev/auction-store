@@ -1,20 +1,27 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import React from "react";
 
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import {mobile, tablet} from '../responsive'
 const Container = styled.div`
   height: 60px;
+  width: 100vw;
+  position: fixed;
+  z-index: 99;
+  background-color: white;
+  ${mobile({ height: "50px" })}
 `;
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
+  ${mobile({padding: "10px 0px"})}
 `;
 const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  ${mobile({ size: "5px", justifyContent: "center" })}
 `;
 
 const Center = styled.div`
@@ -24,17 +31,27 @@ const Center = styled.div`
 const Logo = styled.h1`
   font-weight: bold;
   cursor: pointer;
+  ${mobile({size: "24px"})}
 `;
 const Right = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  ${mobile({ flex: 1, justifyContent: "center" })}
 `;
 const Title = styled.h4`
   margin-left: 25px;
   font-weight: 100;
   cursor: pointer;
+  
+  ${tablet({ marginLeft: "5px", fontSize: "12px"})}
+`;
+const TitleUsername = styled.h4`
+  margin-left: 25px;
+  font-weight: 100;
+  cursor: pointer;
+  ${tablet({ display: "none" })}
 `;
 
 const Navbar = () => {
@@ -45,7 +62,7 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         
-          {username ? <Left><Title>Hello {username}</Title> <Title onClick={() => navigate("/myauction")}>MY AUCTION</Title> </Left> : <Left></Left> }
+          {username ? <Left><TitleUsername>Hello {username}</TitleUsername> <Title onClick={() => navigate("/myauction")}>MY AUCTION</Title> <Title onClick={() => navigate("/addauction")}>ADD AUCTION</Title> </Left> : <Left></Left> }
        
         
         <Center>

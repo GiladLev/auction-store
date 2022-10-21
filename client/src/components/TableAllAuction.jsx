@@ -17,7 +17,6 @@ const TableAllAuction = () => {
   });
   return (
       <div className="container">
-  <h2>Responsive Tables Using LI </h2>
   <ul className="responsive-table">
     <li className="table-header">
       <div className="col col-1">Image</div>

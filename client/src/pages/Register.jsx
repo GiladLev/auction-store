@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { register } from "../redux/apiCalls";
 import { publicRequest } from "../requestMethods";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100vw;
@@ -21,6 +22,7 @@ const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
   background-color: #a1a1a1;
+  ${mobile({ width: "75%" })}
 `;
 const Form = styled.form`
   display: flex;

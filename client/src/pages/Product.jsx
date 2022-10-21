@@ -4,11 +4,13 @@ import styled from "styled-components";
 import Clock from "../components/Clock";
 import Navbar from "../components/Navbar";
 import { publicRequest, userRequest } from "../requestMethods";
+import { mobile } from "../responsive";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 const ImageContainer = styled.div`
   flex: 1;
@@ -17,10 +19,12 @@ const Image = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
+  ${mobile({ height: "40vh" })}
 `;
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
+  ${mobile({ padding: "10px" })}
 `;
 const Title = styled.h1`
   font-weight: 200;
@@ -47,6 +51,7 @@ const Bid = styled.input`
   align-items: center;
   justify-content: center;
   margin: 0 5px;
+
 `;
 const Button = styled.button`
   padding: 15px;
@@ -59,11 +64,16 @@ const Button = styled.button`
     background-color: #f8f4f4;
   }
 `;
+const FilterTitle = styled.span`
+  font-size: 20px;
+  font-weight: 200;
+`;
 const Product = () => {
   const {id} =  useParams();
   const [proudct, setProduct] = useState({});
   const [input, setInput] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
+  const [isAction, setIsAction] = useState(false);
   const user =JSON.parse(localStorage.getItem('user'))?.username
   useEffect(() => {
     const getProduct = async () => {
@@ -96,13 +106,13 @@ const Product = () => {
           <Desc>
             {proudct.desc}
           </Desc>
-          <Desc>A number of suggestions offered: {proudct.allAuction && proudct.allAuction.length}</Desc>
-          <Clock endAuction={proudct.endAuction && proudct.endAuction}/>
-          <Price>{proudct.allAuction && proudct.allAuction[proudct.allAuction?.length-1].price}</Price>
+          <FilterTitle>suggestions offered: {proudct.allAuction && proudct.allAuction.length}</FilterTitle>
+          <FilterTitle><Clock endAuction={proudct.endAuction && proudct.endAuction}/></FilterTitle>
+          <Price>{proudct.allAuction && proudct.allAuction[proudct.allAuction?.length-1].price}$</Price>
           {user ? 
           <AddContainer>
-            <Bid onChange={(e)=>{setInput(e.target.value)}} input type="number" name="test_name" min={input} />
-            <Button onClick={putPrice}>BID</Button>
+            {isAction && <div><Bid onChange={(e)=>{setInput(e.target.value)}} input type="number" name="test_name" min={input} />
+            <Button onClick={putPrice}>BID</Button></div>}
           </AddContainer> : <Desc>You must register to bid</Desc>} 
         </InfoContainer>
       </Wrapper>
