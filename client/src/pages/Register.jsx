@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { register } from "../redux/apiCalls";
 import { publicRequest } from "../requestMethods";
@@ -50,8 +51,16 @@ const Button = styled.button`
     color: white;
     cursor: pointer;
 `;
+const LinkLogin = styled.a`
+  margin: 5px 0px;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 const Register = () => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   const handleSubmit = (e)=>{
     e.preventDefault()
     const register  = async (user)=>{
@@ -70,13 +79,12 @@ const Register = () => {
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus nesciunt fugiat pariatur? Hic, ab molestiae error magni aliquam delectus porro, dolorem obcaecati exercitationem libero quo at qui. Doloremque, perspiciatis unde.
           <Input placeholder="username" onChange={(e) => setUser({...user,username: e.target.value})}/>
           <Input placeholder="email" onChange={(e) => setUser({...user,email: e.target.value})}/>
           <Input placeholder="password" onChange={(e) => setUser({...user,password: e.target.value})}/>
           <Input placeholder="confirm password" onChange={(e) => setUser({...user,confirmPassword: e.target.value})}/>
-          <Agreement>AGREE PRIVACY POLICY</Agreement>
           <Button onClick={handleSubmit}>CREATE</Button>
+          <LinkLogin onClick={() => navigate("/login")}>Registered user? to the login page</LinkLogin>
         </Form>
       </Wrapper>
     </Container>

@@ -56,7 +56,6 @@ const  Auction= styled.div`
     }
 `
 const Product = ({item}) => {
-  {console.log(item);}
   return (
     <Container>
         <Image src={item.img}/>

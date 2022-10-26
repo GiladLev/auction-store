@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { sliderItems } from "../data";
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -36,7 +36,7 @@ const Arrow = styled.div`
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
-  ${mobile({ height: "25px", width: "25px" })}
+  ${tablet({ height: "25px", width: "25px" })}
 `;
 const ArrowUpAndDown = styled.div`
   width: 50px;
@@ -55,7 +55,7 @@ const ArrowUpAndDown = styled.div`
   cursor: pointer;
   opacity: 0.5;
   z-index: 2;
-  ${mobile({ height: "25px", width: "25px" })}
+  ${tablet({ height: "25px", width: "25px" })}
 `;
 
 const Wrapper = styled.div`
@@ -75,13 +75,13 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
-  ${mobile({ flexDirection: "column" })}
+  ${tablet({ flexDirection: "column" })}
 `;
 const ImgContainer = styled.div`
   height: 100%;
-  flex: 1;
+  flex: 0.8;
 
-  ${mobile({ height: "60%", flex: "2" })}
+  ${tablet({ height: "60%", flex: "2" })}
 `;
 
 const Image = styled.img`
@@ -95,7 +95,7 @@ const Image = styled.img`
 const InfoContainer = styled.div`
   flex: 2;
   padding: 50px;
-  ${mobile({ flex: 1, padding: "10px" })}
+  ${tablet({ flex: 1, padding: "10px" })}
 `;
 const Row = styled.div`
   display: flex;
@@ -105,7 +105,7 @@ const Row = styled.div`
 const Title = styled.h1`
   font-size: 70px;
   text-transform: uppercase;
-  ${mobile({ fontSize: "40px" })}
+  ${tablet({ fontSize: "40px" })}
 `;
 
 const Desc = styled.p`
@@ -113,7 +113,7 @@ const Desc = styled.p`
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 3px;
-  ${mobile({ fontSize: "10px", margin: "0px" })}
+  ${tablet({ fontSize: "10px", margin: "0px" })}
 `;
 
 const Button = styled.button`
@@ -121,7 +121,7 @@ const Button = styled.button`
   font-size: 20px;
   background-color: transparent;
   cursor: pointer;
-  ${mobile({ fontSize: "10px", margin: "0px" })}
+  ${tablet({ fontSize: "10px", margin: "20px 0" })}
 `;
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -147,38 +147,6 @@ const Slider = () => {
       );
     }
   };
-
-  // Detect scroll direction in React js
-
-  // const [y, setY] = useState(window.scrollY);
-
-  //   const handleNavigation = useCallback(
-  //     (e) => {
-  //       console.log("lastScroll", y);
-  //       console.log("new", window.scrollY);
-  //       if (y > window.scrollY && y-window.scrollY>5) {
-  //         console.log("scrolling up");
-  //         handleClickUpandDown("up")
-  //         console.log(slideIndexUpandDown);
-  //       } else if (y < window.scrollY && window.scrollY-y>5) {
-  //         console.log("scrolling down");
-  //         handleClickUpandDown("down")
-  //         console.log(slideIndexUpandDown);
-  //       }
-  //       setY(window.scrollY);
-  //       window.scroll(0,60)
-  //     },
-  //     [y]
-  //   );
-
-  //   useEffect(() => {
-  //     setY(window.scrollY);
-  //     window.addEventListener("scroll", handleNavigation);
-
-  //     return () => {
-  //       window.removeEventListener("scroll", handleNavigation);
-  //     };
-  //   }, [handleNavigation]);
 
   return (
     <Container>

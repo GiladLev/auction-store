@@ -17,7 +17,6 @@ function Products({ cat, sort }) {
     const getProudcts = async () => {
       try {
         const res = await publicRequest.get(cat ? `/products?category=${cat}` : `/products`)
-        console.log(products);
         setProducts(res.data)
       } catch (err) {}
     };

@@ -66,7 +66,7 @@ const Navbar = () => {
        
         
         <Center>
-          <Logo onClick={() => navigate("/")}>SHOP.</Logo>
+          <Logo onClick={() => navigate("/")}>AuctionPlace.</Logo>
         </Center>
 
           {username ? <Right> <Title onClick={() => {

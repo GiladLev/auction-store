@@ -90,8 +90,6 @@ const Product = () => {
       const newAuction = {user: user, price: input}
       const res = await userRequest.put(`products/allauction/${id}`, newAuction);
       setProduct(res.data);
-      console.log(proudct);
-      console.log(proudct.allAuction[proudct.allAuction.length-1].price);
     } catch (error) {}
   }
   return (

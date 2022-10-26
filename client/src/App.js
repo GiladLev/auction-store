@@ -8,10 +8,12 @@ import { Routes, Route, BrowserRouter as Router, Navigate, useNavigate } from "r
 import AllAuction from "./pages/AllAuction";
 import { useSelector } from "react-redux";
 import AddAuction from "./pages/AddAuction";
+import Chatbot from "./components/chatbot/Chatbot";
 
 function App() {
   const user = useSelector((state) => state.user.currentUser);
   // const user =JSON.parse(localStorage.getItem('user'))?.username
+  console.log(user);
 
   
   
@@ -25,6 +27,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/myauction" element={<AllAuction />} />
         <Route path="/addauction" element={<AddAuction />} />
+        <Route path="/messanger" element={<Chatbot />} />
       </Routes>
     </Router>
   );
