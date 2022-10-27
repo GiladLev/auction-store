@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import Message from './Message'
 import io from "socket.io-client";
 import "./messanger.css";
-const socket = io.connect("http://localhost:3001");
+const user =JSON.parse(localStorage?.getItem('user'))
+console.log(user);
+const socket = io.connect(user.username==='admin' ? "http://localhost:3001/admin" : "http://localhost:3001");
 const Chatbot = () => {
   //Room State
   const [room, setRoom] = useState("");
@@ -20,15 +22,29 @@ const Chatbot = () => {
 
   const sendMessage = (e) => {
     e.preventDefault()
-    socket.emit("send_message", { message });
-    setAllMessage([...allMessage, message]);
+    socket.emit("send_question", { message });
+    setAllMessage((allMessage)=>[...allMessage, message]);
   };
 
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setAllMessage((allMessage)=>[...allMessage, data.message])
-      
+    socket.on("send_answer", (data) => {
+      if (data.admin){
+        socket.emit("add_question", { message });
+      }else{
+        console.log(data);
+        setAllMessage((allMessage)=>[...allMessage, data.message])
+        console.log(allMessage);
+      }
+
+      socket.on("add_answer", (data) =>{
+        socket.emit("add_answer", { message });
+      })
+
     });
+
+    //admin
+    
+
   }, [socket]);
   return (
     <div className="chatBox">
