@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Message from './Message'
 import io from "socket.io-client";
 import "./messanger.css";
 const user =JSON.parse(localStorage?.getItem('user'))
 console.log(user);
-const socket = io.connect(user.username==='admin' ? "http://localhost:3001/admin" : "http://localhost:3001");
+const socket = io.connect(user?.username==='admin' ? "http://localhost:3001/admin" : "http://localhost:3001");
 const Chatbot = () => {
   //Room State
   const [room, setRoom] = useState("");
@@ -14,6 +14,8 @@ const Chatbot = () => {
   const [messageReceived, setMessageReceived] = useState("");
   const [allMessage, setAllMessage] = useState([]);
 
+  const status = useRef("send_question");
+
   const joinRoom = () => {
     if (room !== "") {
       socket.emit("join_room", room);
@@ -22,28 +24,34 @@ const Chatbot = () => {
 
   const sendMessage = (e) => {
     e.preventDefault()
-    socket.emit("send_question", { message });
+    console.log(status.current);
+    console.log(status.current === "send_question");
+    if (status.current === "send_question"){
+      socket.emit("send_question", { message });
+    } else if(status.current === "askQuestion"){
+      socket.emit("askQuestion", { message });
+    }else if(status.current==='gotQuestionAskAns'){
+      socket.emit("repatAns", { message });
+    }
     setAllMessage((allMessage)=>[...allMessage, message]);
   };
 
   useEffect(() => {
     socket.on("send_answer", (data) => {
-      if (data.admin){
-        socket.emit("add_question", { message });
+      console.log(status.current);
+      if (data.status === 'askQuestion') {
+        status.current='askQuestion'
+      }else if(data.status === 'gotQuestionAskAns'){
+        status.current='gotQuestionAskAns'
       }else{
-        console.log(data);
-        setAllMessage((allMessage)=>[...allMessage, data.message])
-        console.log(allMessage);
+        status.current ='send_question'
       }
-
-      socket.on("add_answer", (data) =>{
-        socket.emit("add_answer", { message });
-      })
-
+      console.log(data);
+      setAllMessage((allMessage)=>[...allMessage, data.message])
+      console.log(allMessage);
     });
-
     //admin
-    
+
 
   }, [socket]);
   return (

@@ -27,6 +27,8 @@ app.listen(process.env.PORT || 5000, () => {
 
   
 // socket for chat bot
+
+
 const http = require("http");
 const { Server } = require("socket.io");
 
@@ -40,6 +42,8 @@ const io = new Server(server, {
 });
 
 
+const QuestionAndAnswer = require('./models/QuestionAndAnswer')
+
 const admin = io.of("/admin");
 
 admin.use((socket, next) => {
@@ -47,18 +51,39 @@ admin.use((socket, next) => {
   console.log("you are admin");
   next();
 });
-
+let question = '';
 admin.on("connection", socket => {
   console.log(`admin Connected: ${socket.id}`);
 
   socket.on("send_question", (data) => {
     console.log(data);
-    socket.emit("send_answer", { admin: true ,message: 'you are admin, lets learn the bot: what do you whant to ask' });
-  });
-  socket.on("add_question", (data) => {
-    console.log("save data", data);
-    socket.emit("add_answer", { admin: true ,message: 'I got the question what is your answer' });
-  });
+    socket.emit("send_answer", { status: 'askQuestion', message: 'you are admin, lets learn the bot: what do you whant to ask' });
+    
+  })
+  socket.on("askQuestion", (data) => {
+    console.log('save question',data);
+    question = data.message
+
+    socket.emit("send_answer", { status: "gotQuestionAskAns", message: 'i got the question, add the option answer' });
+  })
+  socket.on("repatAns", (data) => {
+    try {
+      console.log('save ans',data);
+      QandA= {
+        question: question,
+        answer: data.message
+      }
+      console.log(QandA);
+      //save mongoDB
+      const newQandA = new QuestionAndAnswer(QandA);
+      newQandA.save().then(() => console.log("QandA Successfull in DB"))
+  
+      socket.emit("send_answer", { status: "finsh", message: 'your question and answer are update' });
+    } catch (error) {
+      console.log(error);
+    }
+  })
+
 
 });
 
@@ -71,8 +96,18 @@ io.on("connection", (socket) => {
 
   socket.on("send_question", (data) => {
     console.log(data);
-    const ans = {message: 'ans'}
-    socket.emit("send_answer", ans);
+    try {
+      const getAllAns =async()=>{
+        const res = await QuestionAndAnswer.findOne({ "question" : { $regex: data.message.toLowerCase() } })
+        console.log(res)
+        const ans = res ? {message: res.answer} : {message: "try another word"}
+        socket.emit("send_answer", ans);
+      }
+      getAllAns()
+    } catch (error) {
+      console.log(error);
+    }
+    
   });
 });
 
