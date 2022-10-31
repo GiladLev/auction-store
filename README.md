@@ -99,5 +99,6 @@ Show all auction
    
    
 ## What next <a name="next"></a>
-Connection to a payment service
-Adding a chat bot by socketio
+- Connection to a payment service
+- 
+- Adding a chat bot
