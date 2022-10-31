@@ -16,8 +16,7 @@ const ImageContainer = styled.div`
   flex: 1;
 `;
 const Image = styled.img`
-  width: 60%;
-  height: 90vh;
+  width: 100%;
   object-fit: cover;
   ${tablet({ height: "40vh" })}
 `;
@@ -74,6 +73,7 @@ const Product = () => {
   const [input, setInput] = useState(0);
   const [isFetching, setIsFetching] = useState(false);
   const [isAction, setIsAction] = useState(false);
+  const [timeCounter, setTimeCounter] = useState("Loading...");
   const user =JSON.parse(localStorage.getItem('user'))?.username
   useEffect(() => {
     const getProduct = async () => {
@@ -105,11 +105,11 @@ const Product = () => {
             {proudct.desc}
           </Desc>
           <FilterTitle>suggestions offered: {proudct.allAuction && proudct.allAuction.length}</FilterTitle>
-          <FilterTitle><Clock endAuction={proudct.endAuction && proudct.endAuction}/></FilterTitle>
+          <FilterTitle><Clock endAuction={proudct.endAuction && proudct.endAuction} timeCounter={timeCounter} setTimeCounter={setTimeCounter}/></FilterTitle>
           <Price>{proudct.allAuction && proudct.allAuction[proudct.allAuction?.length-1].price}$</Price>
           {user ? 
           <AddContainer>
-            { <AddContainer><Bid onChange={(e)=>{setInput(e.target.value)}} input type="number" name="test_name" min={input} />
+            {timeCounter!=="The auction ended" && <AddContainer><Bid onChange={(e)=>{setInput(e.target.value)}} input type="number" name="test_name" min={input} />
             <Button onClick={putPrice}>BID</Button></AddContainer>}
           </AddContainer> : <Desc>You must register to bid</Desc>} 
         </InfoContainer>

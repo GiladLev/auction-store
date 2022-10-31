@@ -71,7 +71,7 @@ const WrapperUpandDown = styled.div`
 `;
 const Slide = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 98vh;
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
