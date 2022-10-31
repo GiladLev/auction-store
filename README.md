@@ -58,7 +58,7 @@ Proudcts
 
 ![alt text](https://res.cloudinary.com/dxexnhjmi/image/upload/v1667254328/homepage_phnqua.png)
 
-![alt text](https://res.cloudinary.com/dptzubs72/image/upload/v1666187336/2022-10-19_15_caowty.png)
+![alt text](https://res.cloudinary.com/dxexnhjmi/image/upload/v1667254408/homepage_mvq5ox.png)
 
 Add proudcts
 
@@ -66,7 +66,7 @@ Add proudcts
 
 Show all auction
 
-![alt text]https://res.cloudinary.com/dxexnhjmi/image/upload/v1667254630/homepage_znyxjf.png)
+![alt text](https://res.cloudinary.com/dxexnhjmi/image/upload/v1667254630/homepage_znyxjf.png)
 
 ## Technologies <a name="Technologies"></a>
    Client:
