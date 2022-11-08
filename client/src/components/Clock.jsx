@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const Clock = ({ endAuction, timeCounter, setTimeCounter }) => {
-
+const Clock = ({ endAuction }) => {
+  const [timeCounter, setTimeCounter] = useState("Loading...");
 
 
   useEffect(() => {

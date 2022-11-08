@@ -11,7 +11,6 @@ const Chatbot = () => {
 
   // Messages States
   const [message, setMessage] = useState("");
-  const [messageReceived, setMessageReceived] = useState("");
   const [allMessage, setAllMessage] = useState([]);
 
   const status = useRef("send_question");

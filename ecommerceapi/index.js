@@ -54,27 +54,34 @@ admin.on("connection", socket => {
   console.log(`admin Connected: ${socket.id}`);
 
   socket.on("send_question", (data) => {
-    console.log(data);
-    socket.emit("send_answer", { status: 'askQuestion', message: 'you are admin, lets learn the bot: what do you whant to ask' });
+    socket.emit("send_answer", { status: 'askQuestion', message: 'you are admin, Come teach the bot, write one word that will be the key word for the answers the bot will give' });
     
   })
   socket.on("askQuestion", (data) => {
-    console.log('save question',data);
     question = data.message
 
-    socket.emit("send_answer", { status: "gotQuestionAskAns", message: 'i got the question, add the option answer' });
+   socket.emit("send_answer", { status: "gotQuestionAskAns", message: 'i got the question, add the option answer' });
   })
-  socket.on("repatAns", (data) => {
+  socket.on("repatAns",  async(data) => {
+    console.log(data);
     try {
-      console.log('save ans',data);
-      QandA= {
-        question: question,
-        answer: data.message
+     QandA= {
+        title: question,
+        desc: data.message
       }
-      console.log(QandA);
       //save mongoDB
-      const newQandA = new QuestionAndAnswer(QandA);
-      newQandA.save().then(() => console.log("QandA Successfull in DB"))
+      const newQandA =await QuestionAndAnswer.create(QandA)
+      // const newQandA = await new QuestionAndAnswer(QandA)
+      console.log(newQandA);
+    //   newQandA.save(function(err,result){
+    //     if (err){
+    //         console.log(err);
+
+    //     }
+    //     else{
+    //         console.log(result)
+    //     }
+    // })
   
       socket.emit("send_answer", { status: "finsh", message: 'your question and answer are update' });
     } catch (error) {

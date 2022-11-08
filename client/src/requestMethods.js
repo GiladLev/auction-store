@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api/";
+const BASE_URL = "https://awful-foal-lapel.cyclic.app/api/";
 
 const user =JSON.parse(localStorage?.getItem('user'))
 const TOKEN = user?.accessToken;
