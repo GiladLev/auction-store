@@ -1,6 +1,6 @@
 # Auction store
 
-First project that combines work with Front and Kand in a complete way.
+First project that combines work with Front and back in a complete way.
 A website for managing tenders that allows you to open a unique and secure account. 
 Authorization management using JWT. 
 On the server side, there is a REST server that allows information in the HTTP port. 
